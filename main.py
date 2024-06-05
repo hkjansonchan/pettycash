@@ -49,6 +49,7 @@ def get_path_input():
         else:
             print(f"Invalid path. Please enter a valid directory.")
 
+
 if __name__ == "__main__":
     file = get_path_input()
 
