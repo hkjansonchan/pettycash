@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import openpyxl
 
@@ -39,8 +40,19 @@ def cr(d):
             syb(dy, 7, amount)
 
 
+def get_path_input():
+    while True:
+        path = input("Enter the path: ")
+        if os.path.exists(path):
+            print(f"Path confirmed: {path}")
+            return path
+        else:
+            print(f"Invalid path. Please enter a valid directory.")
+
+if __name__ == "__main__":
+    file = get_path_input()
+
 r = 0
-file = r"C:\Users\hkjan\Desktop\May.xlsx"
 df = pd.read_excel(file)
 df = df.iloc[:, 0:12]
 wb = openpyxl.Workbook()
@@ -59,25 +71,27 @@ while r < len(df):
             cr(df)
             match df.iat[r, 2]:
                 case "Shopping":
-                    syb(dy,8,amount)
+                    syb(dy, 8, amount)
                 case "Food & Drinks":
-                    syb(dy,9,amount)
+                    syb(dy, 9, amount)
                 case "Transport":
-                    syb(dy,10,amount)
+                    syb(dy, 10, amount)
                 case "Bills & Fees":
-                    syb(dy,11,amount)
+                    syb(dy, 11, amount)
                 case "Entertainment":
-                    syb(dy,12,amount)
+                    syb(dy, 12, amount)
         case "TRANSFER":
             cr(df)
             match df.iat[r, 9]:
                 case "Cash":
-                    syb(dy,2,amount)
+                    syb(dy, 2, amount)
                 case "O-Card":
-                    syb(dy,4,amount)
+                    syb(dy, 4, amount)
                 case "Saving_HSBC":
-                    syb(dy,6,amount)
+                    syb(dy, 6, amount)
                 case "O-Card Samsung Pay":
-                    syb(dy,6,amount)
+                    syb(dy, 6, amount)
     r += 1
-wb.save(r"C:\Users\hkjan\Desktop\test2.xlsx")
+wb.save(r"C:\Desktop\test.xlsx")
+print("Done")
+input("Press Enter to continue...")
