@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import openpyxl
+from tkinter import filedialog as fd
 
 
 def syb(x: int, y: int, a: int):
@@ -40,19 +41,12 @@ def cr(d):
             syb(dy, 7, amount)
 
 
-def get_path_input():
-    while True:
-        path = input("Enter the path: ")
-        if os.path.exists(path):
-            print(f"Path confirmed: {path}")
-            return path
-        else:
-            print(f"Invalid path. Please enter a valid directory.")
+def path():
+    path: str = fd.askopenfilename()
+    return path
 
 
-if __name__ == "__main__":
-    file = get_path_input()
-
+file = path()
 r = 0
 df = pd.read_excel(file)
 df = df.iloc[:, 0:12]
