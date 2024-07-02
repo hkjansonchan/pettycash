@@ -1,4 +1,3 @@
-import os
 import pandas as pd
 import openpyxl
 from tkinter import filedialog as fd
