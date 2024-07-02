@@ -45,8 +45,9 @@ def path():
     path: str = fd.askopenfilename()
     return path
 
-
+list = []
 file = path()
+month = int(input("Month: "))
 r = 0
 df = pd.read_excel(file)
 df = df.iloc[:, 0:12]
@@ -54,7 +55,10 @@ wb = openpyxl.Workbook()
 sheet = wb.worksheets[0]
 while r < len(df):
     date = pd.Timestamp(df.iat[r, 0])
-    if date.month != 5:
+    if date.month != month:
+        list.append(r)
+        print(f"Wrong month in line {r}")
+        r += 1
         continue
     dy = date.day
     amount = df.iat[r, 4]
@@ -89,4 +93,5 @@ while r < len(df):
     r += 1
 wb.save(r"C:\Desktop\test.xlsx")
 print("Done")
+print(f"Error list: {list}")
 input("Press Enter to continue...")
